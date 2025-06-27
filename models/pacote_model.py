@@ -1,24 +1,22 @@
 from models.db import conectar
 
-class Turista:
-    def _init_(self, Nome, Email, Telefone, Cidade, Nacionalidade, id=None):
+class Pacote:
+    def _init_(self, Nome, Descricao, Preco_total, id=None):
         self.id = id
         self.Nome = Nome
-        self.Email = Email
-        self.Cidade = Cidade
-        self.Nacionalidade = Nacionalidade
-        self.Telefone = Telefone
-
+        self.Descricao = Descricao
+        self.Preco_total = Preco_total
+      
     def salvar(self):
         conn = conectar()
         cursor = conn.cursor()
 
         if self.id is None:
-            sql = "INSERT INTO turista (Nome, Email, Telefone, Cidade, Nacionalidade) VALUES (%s, %s, %s)"
-            valores = (self.Nome, self.Email, self.Telefone, self.Cidade, self.Nacionalidade)
+            sql = "INSERT INTO turista (Nome, Descricao, Preco_total) VALUES (%s, %s, %s)"
+            valores = (self.Nome, self.Descricao, self.Preco_total)
         else:
             sql = "UPDATE turista SET Nome=%s, Email=%s, Telefone=%s, Cidade=%s, Nacionalidade=%s WHERE id=%s"
-            valores = (self.Nome, self.Email, self.Telefone, self.Cidade, self.Nacionalidade, self.id)
+            valores = (self.Nome, self.Descricao, self.Preco_total, self.id)
 
         cursor.execute(sql, valores)
         conn.commit()
@@ -35,26 +33,26 @@ class Turista:
 
         cursor.close()
         conn.close()
-        return [Turista(**r) for r in resultados]
+        return [Pacote(**r) for r in resultados]
 
     @staticmethod
-    def buscar_por_id(id_turista):
+    def buscar_por_id(id_Pacote):
         conn = conectar()
         cursor = conn.cursor(dictionary=True)
 
-        cursor.execute("SELECT * FROM turista WHERE id = %s", (id_turista,))
+        cursor.execute("SELECT * FROM pacote WHERE id = %s", (id_Pacote,))
         resultado = cursor.fetchone()
 
         cursor.close()
         conn.close()
 
-        return Turista(**resultado) if resultado else None
+        return Pacote(**resultado) if resultado else None
 
     def deletar(self):
         if self.id is not None:
             conn = conectar()
             cursor = conn.cursor()
-            cursor.execute("DELETE FROM turista WHERE id = %s", (self.id,))
+            cursor.execute("DELETE FROM pacote WHERE id = %s", (self.id,))
             conn.commit()
             cursor.close()
             conn.close()

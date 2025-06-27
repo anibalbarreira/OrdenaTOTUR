@@ -42,7 +42,7 @@ class Turista:
         conn = conectar()
         cursor = conn.cursor(dictionary=True)
 
-        cursor.execute("SELECT * FROM turista WHERE id = %s", (id_turista,))
+        cursor.execute("SELECT * FROM Turista WHERE id = %s", (id_turista,))
         resultado = cursor.fetchone()
 
         cursor.close()
@@ -54,7 +54,7 @@ class Turista:
         if self.id is not None:
             conn = conectar()
             cursor = conn.cursor()
-            cursor.execute("DELETE FROM turista WHERE id = %s", (self.id,))
+            cursor.execute("DELETE FROM Turista WHERE id = %s", (self.id,))
             conn.commit()
             cursor.close()
             conn.close()

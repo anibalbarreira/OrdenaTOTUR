@@ -10,7 +10,7 @@ class Pacote_atrativoController:
         return Pacote_atrativo.buscar_todos()
 
     def atualizar_pacote_atrativo(self, Nome, Descricao, Preco):
-        Pacote_atrativo = Pacote_atrativo(Nome, Descricao, Preco id)
+        Pacote_atrativo = Pacote_atrativo(Nome, Descricao, Preco, id)
         Pacote_atrativo.salvar()
         return Pacote_atrativo
 

@@ -10,7 +10,7 @@ class Atrativo_turisticoController:
         return Atrativo_turistico.buscar_todos()
 
     def atualizar_Atrativo_turistico(self, Nome, Tipo, Cidade, Preco):
-        Atrativo_turistico = Pacote(Nome, Tipo, Cidade, Preco id)
+        Atrativo_turistico = Pacote(Nome, Tipo, Cidade, Preco, id)
         Atrativo_turistico.salvar()
         return Atrativo_turistico
 

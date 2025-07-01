@@ -6,11 +6,11 @@ class TelaAcoes:
         self.root = controller.root
         self.frame = tk.Frame(self.root, bg="#DCE6F1")
 
-        sel.rootconfigure(bg="#DCE6F1")
+        self.root.configure(bg="#DCE6F1")
         self.root.atributes('-fullscreen', True)
 
 def mostrar(self):
-    self.root.title("ClinControl")
+    self.root.title("Agência")
     self.frame.pack(padx=20, pady=20)
     var_opcao = tk.StringVar (Value="")
 

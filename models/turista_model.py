@@ -1,7 +1,7 @@
 from models.db import conectar
 
 class Turista:
-    def _init_(self, Nome, Email, Telefone, Cidade, Nacionalidade, id=None):
+    def __init__(self, Nome, Email, Telefone, Cidade, Nacionalidade, id=None):
         self.id = id
         self.Nome = Nome
         self.Email = Email
@@ -14,7 +14,7 @@ class Turista:
         cursor = conn.cursor()
 
         if self.id is None:
-            sql = "INSERT INTO turista (Nome, Email, Telefone, Cidade, Nacionalidade) VALUES (%s, %s, %s)"
+            sql = "INSERT INTO turista (Nome, Email, Telefone, Cidade, Nacionalidade) VALUES (%s, %s, %s, %s, %s)"
             valores = (self.Nome, self.Email, self.Telefone, self.Cidade, self.Nacionalidade)
         else:
             sql = "UPDATE turista SET Nome=%s, Email=%s, Telefone=%s, Cidade=%s, Nacionalidade=%s WHERE id=%s"

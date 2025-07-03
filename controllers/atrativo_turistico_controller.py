@@ -20,27 +20,27 @@ class CadastroAtrativoturisticoController:
         y = (self.root.winfo_screenheight() // 2) - (height // 2)
         self.root.geometry(f'+{x}+{y}')
     
-    def cadastrar_atrativo_turistico(self, Nome, Cidade, Tipo, Preco):
-        if Nome == '' or Cidade == '' or Tipo == '' or Preco == '':
+    def cadastrar_atrativo_turistico(self, Nome, Tipo, Cidade, Preco):
+        if Nome == '' or Tipo == '' or Cidade == '' or Preco == '':
             messagebox.showinfo("Revise", f"Preencha todos os dados")
             return None
         else:
-            Atrativo_turistico = Atrativo_turistico(Nome=Nome, Cidade=Cidade, Tipo=Tipo, 
+            atrativo_turistico = Atrativo_turistico(Nome=Nome, Tipo=Tipo, Cidade=Cidade, 
                             Preco=Preco)
-            Atrativo_turistico.salvar()
-            return Atrativo_turistico
+            atrativo_turistico.salvar()
+            return atrativo_turistico
     
     def listar_atrativo_turistico(self):
         return Atrativo_turistico.buscar_todos()
     
-    def atualizar_atrativo_turistico(self, id, nome, cidade, tipo, preco):
-        Atrativo_turistico = Atrativo_turistico(nome=nome, Cidade=cidade, Tipo=tipo, Preco=preco, id=id)
-        Atrativo_turistico.salvar()
-        return Atrativo_turistico
+    def atualizar_atrativo_turistico(self, id, nome, tipo, cidade, preco):
+        atrativo_turistico = Atrativo_turistico(Nome=nome, Tipo=tipo,  Cidade=cidade, Preco=preco, id=id)
+        atrativo_turistico.salvar()
+        return atrativo_turistico
     
     def excluir_Atrativo_turistico(self, id):
-        Atrativo_turistico = Atrativo_turistico.buscar_por_id(id)
-        if Atrativo_turistico:
-            Atrativo_turistico.deletar()
+        atrativo_turistico = Atrativo_turistico.buscar_por_id(id)
+        if atrativo_turistico:
+            atrativo_turistico.deletar()
             return True
         return False

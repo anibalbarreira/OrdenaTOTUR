@@ -13,10 +13,10 @@ class Atrativo_turistico:
         cursor = conn.cursor()
 
         if self.id is None:
-            sql = "INSERT INTO Atrativo_turistico (Nome, Tipo, Cidade, Preco) VALUES (%s, %s, %s)"
+            sql = "INSERT INTO atrativo_turistico (Nome, Tipo, Cidade, Preco) VALUES (%s, %s, %s, %s)"
             valores = (self.Nome, self.Tipo, self.Cidade, self.Preco)
         else:
-            sql = "UPDATE Atrativo_turistico SET Nome=%s, Tipo=%s, Cidade=%s, Preco=%s WHERE id=%s"
+            sql = "UPDATE atrativo_turistico SET Nome=%s, Tipo=%s, Cidade=%s, Preco=%s WHERE id=%s"
             valores = (self.Nome, self.Tipo, self.Cidade, self.Preco, self.id)
 
         cursor.execute(sql, valores)
@@ -29,7 +29,7 @@ class Atrativo_turistico:
         conn = conectar()
         cursor = conn.cursor(dictionary=True)
 
-        cursor.execute("SELECT * FROM Atrativo_turistico")
+        cursor.execute("SELECT * FROM atrativo_turistico")
         resultados = cursor.fetchall()
 
         cursor.close()
@@ -41,7 +41,7 @@ class Atrativo_turistico:
         conn = conectar()
         cursor = conn.cursor(dictionary=True)
 
-        cursor.execute("SELECT * FROM Atrativo_turistico WHERE id = %s", (id_Atrativo_turistico))
+        cursor.execute("SELECT * FROM atrativo_turistico WHERE id = %s", (id_Atrativo_turistico))
         resultado = cursor.fetchone()
 
         cursor.close()
@@ -53,7 +53,7 @@ class Atrativo_turistico:
         if self.id is not None:
             conn = conectar()
             cursor = conn.cursor()
-            cursor.execute("DELETE FROM Atrativo_turistico WHERE id = %s", (self.id,))
+            cursor.execute("DELETE FROM atrativo_turistico WHERE id = %s", (self.id,))
             conn.commit()
             cursor.close()
             conn.close()

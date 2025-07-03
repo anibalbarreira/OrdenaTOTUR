@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox, ttk
 
-class CadastroAtrativoturisticoView:
+class CadastroPacoteView:
     def __init__(self, root, controller):
         self.root = root
         self.controller = controller
@@ -20,7 +20,7 @@ class CadastroAtrativoturisticoView:
         self._criar_formulario()
         
     def _configurar_janela(self):
-        self.root.title("Cadastro de Atrativo Turistico - Agência de Turismo")
+        self.root.title("Cadastro de Pacote - Agência de Turismo")
         self.root.configure(bg='#DCE6F1')
         
         # Centraliza o conteúdo
@@ -38,21 +38,19 @@ class CadastroAtrativoturisticoView:
         frame_form.pack(pady=50)
         
         ttk.Label(frame_form, 
-                 text="Cadastro de Atrativo Turistico",
+                 text="Cadastro de Pacote",
                  font=('Helvetica', 16, 'bold')).grid(row=0, column=0, columnspan=2, pady=20)
         
         # Variáveis para os campos
         self.var_nome = tk.StringVar()
-        self.var_tipo = tk.StringVar()
-        self.var_cidade = tk.StringVar()
-        self.var_preco = tk.StringVar()
+        self.var_descricao = tk.StringVar()
+        self.var_preco_total = tk.StringVar()
                 
         # Campos do formulário
         campos = [
             ("Nome:", self.var_nome),
-            ("Tipo:", self.var_tipo),
-            ("Cidade:", self.var_cidade),
-            ("Preço:", self.var_preco),
+            ("Descricao:", self.var_descricao),
+            ("Preço total:", self.var_preco_total),
         ]
         
         for i, (label, var) in enumerate(campos, start=1):
@@ -71,14 +69,13 @@ class CadastroAtrativoturisticoView:
         try:
             dados = {
                 'Nome': self.var_nome.get(),
-                'Tipo': self.var_tipo.get(),
-                'Cidade': self.var_cidade.get(),
-                'Preco': self.var_preco.get(),
+                'Descricao': self.var_descricao.get(),
+                'Preco_total': self.var_preco_total.get(),
             }
             
             # Chama o controller para cadastrar
-            atrativoturistico = self.controller.cadastrar_atrativo_turistico(**dados)
-            messagebox.showinfo("Sucesso", f"Atrativo turistico {atrativoturistico.Nome} cadastrado com sucesso!")
+            pacote = self.controller.cadastrar_pacote(**dados)
+            messagebox.showinfo("Sucesso", f"Atrativoturistico {pacote.Nome} cadastrado com sucesso!")
             self._limpar()
             
         except Exception as e:
@@ -86,9 +83,8 @@ class CadastroAtrativoturisticoView:
     
     def _limpar(self):
         self.var_nome.set("")
-        self.var_tipo.set("")
-        self.var_cidade.set("")
-        self.var_preco.set("")
+        self.var_descricao.set("")
+        self.var_preco_total.set("")
             
     def _fechar(self):
         self.root.destroy()

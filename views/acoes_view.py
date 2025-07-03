@@ -35,9 +35,9 @@ class TelaAcoes:
         
         botoes = [
             ("Cadastrar Turista", self.controller.abrir_cadastro_turista),
-            ("Cadastrar Atrativo Turistico", lambda: print("Cadastrar Atrativo Turistico")),
-            ("Cadastrar Pacote", lambda: print("Cadastrar Pacote")),
-            ("Gerenciar Reservas", lambda: print("Gerenciar Reservas")),
+            ("Cadastrar Atrativo Turistico", self.controller.abrir_cadastro_atrativo_turistico),
+            ("Cadastrar Pacote", self.controller.abrir_cadastro_pacote),
+            ("Gerenciar Reservas", lambda: print("Gerencias Reservas")),
             ("Avaliações", lambda: print("Avaliações")),
             ("Sair", self.controller.sair)
         ]

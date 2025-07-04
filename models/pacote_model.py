@@ -1,7 +1,7 @@
 from models.db import conectar
 
 class Pacote:
-    def _init_(self, Nome, Descricao, Preco_total, id=None):
+    def __init__(self, Nome, Descricao, Preco_total, id=None):
         self.id = id
         self.Nome = Nome
         self.Descricao = Descricao
@@ -28,7 +28,7 @@ class Pacote:
         conn = conectar()
         cursor = conn.cursor(dictionary=True)
 
-        cursor.execute("SELECT * FROM turista")
+        cursor.execute("SELECT * FROM pacote")
         resultados = cursor.fetchall()
 
         cursor.close()

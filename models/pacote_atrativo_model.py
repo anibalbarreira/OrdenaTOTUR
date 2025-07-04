@@ -1,7 +1,7 @@
 from models.db import conectar
 
 class Pacote_atrativo:
-    def _init_(self, Nome, Descricao, Preco, id=None):
+    def __init__(self, Nome, Descricao, Preco, id=None):
         self.id = id
         self.Nome = Nome
         self.Descricao = Descricao
@@ -46,7 +46,7 @@ class Pacote_atrativo:
         cursor.close()
         conn.close()
 
-        return Pacote_atrativo**resultado) if resultado else None
+        return Pacote_atrativo (**resultado) if resultado else None
 
     def deletar(self):
         if self.id is not None:

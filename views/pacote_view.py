@@ -75,7 +75,7 @@ class CadastroPacoteView:
             
             # Chama o controller para cadastrar
             pacote = self.controller.cadastrar_pacote(**dados)
-            messagebox.showinfo("Sucesso", f"Atrativoturistico {pacote.Nome} cadastrado com sucesso!")
+            messagebox.showinfo("Sucesso", f"Pacote {pacote.Nome} cadastrado com sucesso!")
             self._limpar()
             
         except Exception as e:

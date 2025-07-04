@@ -1,7 +1,7 @@
 from models.db import conectar
 
 class Atrativo_turistico:
-    def _init_(self, Nome, Tipo, Cidade, Preco, id=None):
+    def __init__(self, Nome, Tipo, Cidade, Preco, id=None):
         self.id = id
         self.Nome = Nome
         self.Tipo = Tipo
@@ -41,7 +41,7 @@ class Atrativo_turistico:
         conn = conectar()
         cursor = conn.cursor(dictionary=True)
 
-        cursor.execute("SELECT * FROM atrativo_turistico WHERE id = %s", (id_Atrativo_turistico))
+        cursor.execute("SELECT * FROM atrativo_turistico WHERE id = %s", (id_Atrativo_turistico,))
         resultado = cursor.fetchone()
 
         cursor.close()

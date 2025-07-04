@@ -1,7 +1,7 @@
 from models.db import conectar
 
 class Turista:
-    def _init_(self, Nome, Email, Telefone, Cidade, Nacionalidade, id=None):
+    def __init__(self, Nome, Email, Telefone, Cidade, Nacionalidade, id=None):
         self.id = id
         self.Nome = Nome
         self.Email = Email

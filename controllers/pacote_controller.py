@@ -25,10 +25,10 @@ class CadastroPacoteController:
             messagebox.showinfo("Revise", f"Preencha todos os dados")
             return None
         else:
-            Pacote = Pacote(Nome=Nome, Descricao=Descricao,  
+            pacote = Pacote(Nome=Nome, Descricao=Descricao,  
                             Preco_total=Preco_total)
-            Pacote.salvar()
-            return Pacote
+            pacote.salvar()
+            return pacote
     
     def listar_pacote(self):
         return Pacote.buscar_todos()

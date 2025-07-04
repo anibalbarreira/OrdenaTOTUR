@@ -46,6 +46,7 @@ class CadastroAtrativoturisticoView:
         self.var_tipo = tk.StringVar()
         self.var_cidade = tk.StringVar()
         self.var_preco = tk.StringVar()
+        self.var_id_pacote = tk.StringVar()
                 
         # Campos do formulário
         campos = [
@@ -53,6 +54,7 @@ class CadastroAtrativoturisticoView:
             ("Tipo:", self.var_tipo),
             ("Cidade:", self.var_cidade),
             ("Preço:", self.var_preco),
+            ("Id pacote:", self.var_id_pacote),
         ]
         
         for i, (label, var) in enumerate(campos, start=1):
@@ -74,6 +76,7 @@ class CadastroAtrativoturisticoView:
                 'Tipo': self.var_tipo.get(),
                 'Cidade': self.var_cidade.get(),
                 'Preco': self.var_preco.get(),
+                'Pacote': self.var_id_pacote.get(),
             }
             
             # Chama o controller para cadastrar
@@ -89,6 +92,7 @@ class CadastroAtrativoturisticoView:
         self.var_tipo.set("")
         self.var_cidade.set("")
         self.var_preco.set("")
+        self.var_id_pacote.set("")
             
     def _fechar(self):
         self.root.destroy()

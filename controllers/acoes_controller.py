@@ -1,7 +1,7 @@
 from views.acoes_view import TelaAcoes
 from controllers.turista_controller import TuristaController
-from controllers.atrativo_turistico_controller import CadastroAtrativoturisticoController
 from controllers.pacote_controller import CadastroPacoteController
+from controllers.atrativo_turistico_controller import CadastroAtrativoturisticoController
 import tkinter as tk
 
 class AcoesController:

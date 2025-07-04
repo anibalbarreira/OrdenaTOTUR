@@ -1,23 +1,24 @@
 from models.db import conectar
 
 class Atrativo_turistico:
-    def __init__(self, Nome, Tipo, Cidade, Preco, id=None):
+    def __init__(self, Nome, Tipo, Cidade, Preco, id_Pacote, id=None):
         self.id = id
         self.Nome = Nome
         self.Tipo = Tipo
         self.Cidade = Cidade
         self.Preco = Preco
+        self.id_Pacote = id_Pacote
         
     def salvar(self):
         conn = conectar()
         cursor = conn.cursor()
 
         if self.id is None:
-            sql = "INSERT INTO atrativo_turistico (Nome, Tipo, Cidade, Preco) VALUES (%s, %s, %s, %s)"
-            valores = (self.Nome, self.Tipo, self.Cidade, self.Preco)
+            sql = "INSERT INTO atrativo_turistico (Nome, Tipo, Cidade, Preco, id_Pacote) VALUES (%s, %s, %s, %s, %s)"
+            valores = (self.Nome, self.Tipo, self.Cidade, self.Preco, self.id_Pacote)
         else:
-            sql = "UPDATE atrativo_turistico SET Nome=%s, Tipo=%s, Cidade=%s, Preco=%s WHERE id=%s"
-            valores = (self.Nome, self.Tipo, self.Cidade, self.Preco, self.id)
+            sql = "UPDATE atrativo_turistico SET Nome=%s, Tipo=%s, Cidade=%s, Preco=%s, id_Pacote=%s, WHERE id_Atrativo=%s"
+            valores = (self.Nome, self.Tipo, self.Cidade, self.Preco, self.id_Pacote, self.id)
 
         cursor.execute(sql, valores)
         conn.commit()
@@ -41,7 +42,7 @@ class Atrativo_turistico:
         conn = conectar()
         cursor = conn.cursor(dictionary=True)
 
-        cursor.execute("SELECT * FROM atrativo_turistico WHERE id = %s", (id_Atrativo_turistico,))
+        cursor.execute("SELECT * FROM atrativo_turistico WHERE id_Atrativo = %s", (id_Atrativo_turistico,))
         resultado = cursor.fetchone()
 
         cursor.close()
@@ -53,7 +54,7 @@ class Atrativo_turistico:
         if self.id is not None:
             conn = conectar()
             cursor = conn.cursor()
-            cursor.execute("DELETE FROM atrativo_turistico WHERE id = %s", (self.id,))
+            cursor.execute("DELETE FROM atrativo_turistico WHERE id_Atrativo = %s", (self.id,))
             conn.commit()
             cursor.close()
             conn.close()

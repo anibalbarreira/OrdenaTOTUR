@@ -20,21 +20,21 @@ class CadastroAtrativoturisticoController:
         y = (self.root.winfo_screenheight() // 2) - (height // 2)
         self.root.geometry(f'+{x}+{y}')
     
-    def cadastrar_atrativo_turistico(self, Nome, Tipo, Cidade, Preco):
-        if Nome == '' or Tipo == '' or Cidade == '' or Preco == '':
+    def cadastrar_atrativo_turistico(self, Nome, Tipo, Cidade, Preco, id_Pacote):
+        if Nome == '' or Tipo == '' or Cidade == '' or Preco == '' or id_Pacote == '':
             messagebox.showinfo("Revise", f"Preencha todos os dados")
             return None
         else:
             atrativo_turistico = Atrativo_turistico(Nome=Nome, Tipo=Tipo, Cidade=Cidade, 
-                            Preco=Preco)
+                            Preco=Preco, id_Pacote=id_Pacote)
             atrativo_turistico.salvar()
             return atrativo_turistico
     
     def listar_atrativo_turistico(self):
         return Atrativo_turistico.buscar_todos()
     
-    def atualizar_atrativo_turistico(self, id, nome, tipo, cidade, preco):
-        atrativo_turistico = Atrativo_turistico(Nome=nome, Tipo=tipo,  Cidade=cidade, Preco=preco, id=id)
+    def atualizar_atrativo_turistico(self, id, nome, tipo, cidade, preco, id_pacote):
+        atrativo_turistico = Atrativo_turistico(Nome=nome, Tipo=tipo,  Cidade=cidade, Preco=preco, id_Pacote=id_pacote, id=id)
         atrativo_turistico.salvar()
         return atrativo_turistico
     

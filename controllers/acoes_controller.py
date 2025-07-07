@@ -3,6 +3,7 @@ from controllers.turista_controller import TuristaController
 from controllers.pacote_controller import CadastroPacoteController
 from controllers.atrativo_turistico_controller import CadastroAtrativoturisticoController
 import tkinter as tk
+from tkinter import ttk
 
 class AcoesController:
     def __init__(self, root):
@@ -50,7 +51,7 @@ class AcoesController:
         pacotes = self.pacote_controller.listar_pacote()
 
         # Criar o Treeview para exibir os pacotes
-        tree = tk.Treeview(lista_window, columns=("ID", "Nome", "Descrição", "Preço"), show="headings")
+        tree = ttk.Treeview(lista_window, columns=("ID", "Nome", "Descrição", "Preço"), show="headings")
         tree.grid(row=2, column=0, padx=20, pady=20, sticky="nsew")
 
         # Definir os cabeçalhos das colunas

@@ -59,14 +59,14 @@ class CadastroAtrativoturisticoView:
             ttk.Entry(frame_form, textvariable=var, width=40).grid(row=i, column=1, padx=5, pady=5)
 
         # Adicionando o combobox de pacotes
-        ttk.Label(frame_form, text="Pacote:").grid(row=4, column=0, sticky='e', padx=5, pady=5)
+        ttk.Label(frame_form, text="Pacote:").grid(row=5, column=0, sticky='e', padx=5, pady=5)
 
         # Lista de pacotes (id_Pacote, Nome) para o combobox
         pacotes = self.pacote_controller.listar_pacote()
 
         pacotes_display = [(p.id, p.Nome) for p in pacotes]
         self.combobox_pacote = ttk.Combobox(frame_form, state="readonly", values=[nome for _, nome in pacotes_display], width=37)
-        self.combobox_pacote.grid(row=4, column=1, padx=5, pady=5)
+        self.combobox_pacote.grid(row=5, column=1, padx=5, pady=5)
         self.combobox_pacote.set("Selecione o pacote")
 
         # Frame dos botões (corrigido)
@@ -80,7 +80,7 @@ class CadastroAtrativoturisticoView:
     def _salvar(self):
         try:
             pacotes = self.pacote_controller.listar_pacote()
-            pacotes_dict = {p['Nome']: p['id'] for p in pacotes}
+            pacotes_dict = {p.Nome: p.id for p in pacotes}
             id_pacote_selecionado = pacotes_dict.get(self.combobox_pacote.get())
             dados = {
                 'Nome': self.var_nome.get(),
@@ -90,7 +90,6 @@ class CadastroAtrativoturisticoView:
                 'id_Pacote': id_pacote_selecionado,  
             }
 
-            # Chama o controller para cadastrar
             atrativoturistico = self.controller.cadastrar_atrativo_turistico(**dados)
             messagebox.showinfo("Sucesso", f"Atrativo turistico {atrativoturistico.Nome} cadastrado com sucesso!")
             self._limpar()

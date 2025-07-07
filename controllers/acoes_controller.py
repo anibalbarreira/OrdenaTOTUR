@@ -7,6 +7,7 @@ import tkinter as tk
 class AcoesController:
     def __init__(self, root):
         self.root = root
+        self.pacote_controller = CadastroPacoteController(self.root)
         self.view = TelaAcoes(self.root, self)
         
     def iniciar_tela(self):
@@ -26,8 +27,9 @@ class AcoesController:
         cadastro_window = tk.Toplevel(self.root)
         cadastro_window.attributes('-fullscreen', True)
         CadastroPacoteController(cadastro_window).iniciar_tela()
-
+        
     def abrir_lista_pacotes(self):
+        # Criar a janela de listagem de pacotes
         lista_window = tk.Toplevel(self.root)
         lista_window.title("Lista de Pacotes")
         lista_window.configure(bg="#E9F1F7")
@@ -45,7 +47,7 @@ class AcoesController:
         titulo.grid(row=1, column=0, columnspan=2, pady=(20, 50), sticky="n")
 
         # Obter pacotes da controller
-        pacotes = self.controller.listar_pacote()
+        pacotes = self.pacote_controller.listar_pacote()
 
         # Criar o Treeview para exibir os pacotes
         tree = tk.Treeview(lista_window, columns=("ID", "Nome", "Descrição", "Preço"), show="headings")

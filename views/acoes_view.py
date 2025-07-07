@@ -6,7 +6,7 @@ class TelaAcoes:
         self.root = root
         self.controller = controller
         self.frame = None
-        self.fonte = tkfont.Font(family="Helvetica", size=12)
+        self.fonte = tkfont.Font(family="Helvetica", size=14)
         
     def mostrar(self):
         self._configurar_janela()
@@ -14,10 +14,10 @@ class TelaAcoes:
         
     def _configurar_janela(self):
         self.root.title("Agência de Turismo")
-        self.root.configure(bg="#DCE6F1")
+        self.root.configure(bg="#E9F1F7")
         self.root.attributes('-fullscreen', True)
         
-        # Centralizar conteúdo
+        # Centralizar conteúdo e permitir expansibilidade
         self.root.grid_rowconfigure(0, weight=1)
         self.root.grid_columnconfigure(0, weight=1)
         
@@ -25,32 +25,47 @@ class TelaAcoes:
         if self.frame:
             self.frame.destroy()
             
-        self.frame = tk.Frame(self.root, bg="#DCE6F1")
+        self.frame = tk.Frame(self.root, bg="#E9F1F7")
         self.frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
         
-        tk.Label(self.frame, 
-                text="OrdenaTOTUR",
-                font=("Helvetica", 16, "bold"),
-                bg="#DCE6F1").pack(pady=(0, 20))
-        
+        titulo = tk.Label(self.frame, 
+                          text="OrdenaTOTUR",
+                          font=("Helvetica", 40, "bold"),
+                          bg="#E9F1F7",
+                          fg="#2C3E50")
+        titulo.grid(row=0, column=0, pady=(20, 50), sticky="n", columnspan=3)
+
         botoes = [
-            ("Cadastrar Turista", self.controller.abrir_cadastro_turista),
-            ("Cadastrar Atrativo Turistico", self.controller.abrir_cadastro_atrativo_turistico),
-            ("Cadastrar Pacote", self.controller.abrir_cadastro_pacote),
-            ("Gerenciar Reservas", lambda: print("Gerencias Reservas")),
-            ("Avaliações", lambda: print("Avaliações")),
-            ("Sair", self.controller.sair)
+            ("Cadastrar Turista - F1", self.controller.abrir_cadastro_turista, "#28A745", "F1"),
+            ("Cadastrar Atrativo Turístico - F2", self.controller.abrir_cadastro_atrativo_turistico, "#F39C12", "F2"),
+            ("Cadastrar Pacote - F3", self.controller.abrir_cadastro_pacote, "#3498DB", "F3"),
+            ("Gerenciar Reservas - F4", lambda: print("Gerenciar Reservas"), "#F1C40F", "F4"),
+            ("Avaliações - F5", lambda: print("Avaliações"), "#9B59B6", "F5"),
+            ("Sair - F6", self.controller.sair, "#E74C3C", "F6")
         ]
         
-        for texto, comando in botoes:
-            tk.Button(
+        for i, (texto, comando, cor, tecla) in enumerate(botoes):
+            button = tk.Button(
                 self.frame,
                 text=texto,
-                width=25,
+                width=30,
                 font=self.fonte,
                 command=comando,
-                bg="#4BACC6",
+                bg=cor,
                 fg="white",
                 relief=tk.RAISED,
-                borderwidth=2
-            ).pack(pady=5, ipady=5)
+                borderwidth=3,
+                padx=20,
+                pady=10
+            )
+            row = i // 2 
+            col = i % 2
+            button.grid(row=row + 1, column=col, padx=10, pady=15, sticky="ew")
+
+            self.root.bind(f"<F{i+1}>", lambda event, comando=comando: comando())
+
+        self.frame.grid_columnconfigure(0, weight=1)
+        self.frame.grid_columnconfigure(1, weight=1)
+
+        self.frame.grid_rowconfigure(len(botoes) // 2 + 1, weight=1)
+

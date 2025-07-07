@@ -1,10 +1,12 @@
 from models.atrativo_turistico_model import Atrativo_turistico
 from views.cadastro_atrativo_turistico_view import CadastroAtrativoturisticoView
+from controllers.pacote_controller import CadastroPacoteController
 from tkinter import messagebox
 
 class CadastroAtrativoturisticoController:
     def __init__(self, root):
         self.root = root
+        self.pacote_controller = CadastroPacoteController(root)
         self.view = CadastroAtrativoturisticoView(self.root, self)
         
     def iniciar_tela(self):

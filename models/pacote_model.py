@@ -33,8 +33,10 @@ class Pacote:
 
         cursor.close()
         conn.close()
+        for r in resultados:
+            r['id'] = r.pop('id_Pacote')
         return [Pacote(**r) for r in resultados]
-
+                
     @staticmethod
     def buscar_por_id(id_Pacote):
         conn = conectar()

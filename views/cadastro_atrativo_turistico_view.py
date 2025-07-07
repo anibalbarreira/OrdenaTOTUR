@@ -35,7 +35,7 @@ class CadastroAtrativoturisticoView:
         self.frame_principal.grid(row=0, column=0, sticky='nsew')
 
         frame_form = ttk.Frame(self.frame_principal)
-        frame_form.pack(pady=50)
+        frame_form.grid(pady=50, row=0, column=0)
 
         ttk.Label(frame_form, 
                  text="Cadastro de Atrativo Turistico",
@@ -46,7 +46,6 @@ class CadastroAtrativoturisticoView:
         self.var_tipo = tk.StringVar()
         self.var_cidade = tk.StringVar()
         self.var_preco = tk.StringVar()
-        self.var_id_pacote = tk.StringVar()
 
         campos = [
             ("Nome:", self.var_nome),
@@ -61,29 +60,28 @@ class CadastroAtrativoturisticoView:
 
         # Adicionando o combobox de pacotes
         ttk.Label(frame_form, text="Pacote:").grid(row=4, column=0, sticky='e', padx=5, pady=5)
-        
+
         # Lista de pacotes (id_Pacote, Nome) para o combobox
         pacotes = self.pacote_controller.listar_pacote()
 
-        pacotes_display = [(p['id'], p['Nome']) for p in pacotes]
+        pacotes_display = [(p.id, p.Nome) for p in pacotes]
         self.combobox_pacote = ttk.Combobox(frame_form, state="readonly", values=[nome for _, nome in pacotes_display], width=37)
         self.combobox_pacote.grid(row=4, column=1, padx=5, pady=5)
         self.combobox_pacote.set("Selecione o pacote")
 
-        # Frame dos botões
+        # Frame dos botões (corrigido)
         frame_botoes = ttk.Frame(self.frame_principal)
-        frame_botoes.pack(pady=20)
+        frame_botoes.grid(pady=20, row=1, column=0)
 
-        ttk.Button(frame_botoes, text="Salvar", command=self._salvar).pack(side=tk.LEFT, padx=10)
-        ttk.Button(frame_botoes, text="Limpar", command=self._limpar).pack(side=tk.LEFT, padx=10)
-        ttk.Button(frame_botoes, text="Voltar", command=self._fechar).pack(side=tk.LEFT, padx=10)
+        ttk.Button(frame_botoes, text="Salvar", command=self._salvar).grid(row=0, column=0, padx=10)
+        ttk.Button(frame_botoes, text="Limpar", command=self._limpar).grid(row=0, column=1, padx=10)
+        ttk.Button(frame_botoes, text="Voltar", command=self._fechar).grid(row=0, column=2, padx=10)
 
     def _salvar(self):
         try:
             pacotes = self.pacote_controller.listar_pacote()
             pacotes_dict = {p['Nome']: p['id'] for p in pacotes}
             id_pacote_selecionado = pacotes_dict.get(self.combobox_pacote.get())
-
             dados = {
                 'Nome': self.var_nome.get(),
                 'Tipo': self.var_tipo.get(),
@@ -105,7 +103,7 @@ class CadastroAtrativoturisticoView:
         self.var_tipo.set("")
         self.var_cidade.set("")
         self.var_preco.set("")
-        self.var_id_pacote.set("")
+        self.combobox_pacote.set("Selecione o pacote")
 
     def _fechar(self):
         self.root.destroy()

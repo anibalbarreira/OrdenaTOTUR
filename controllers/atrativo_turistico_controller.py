@@ -6,8 +6,8 @@ from tkinter import messagebox
 class CadastroAtrativoturisticoController:
     def __init__(self, root):
         self.root = root
-        self.pacote_controller = CadastroPacoteController(root)
-        self.view = CadastroAtrativoturisticoView(self.root, self)
+        self.pacote_controller = CadastroPacoteController(root)  
+        self.view = CadastroAtrativoturisticoView(self.root, self, self.pacote_controller)
         
     def iniciar_tela(self):
         self.view.mostrar()

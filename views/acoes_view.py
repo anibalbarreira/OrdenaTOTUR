@@ -52,7 +52,7 @@ class TelaAcoes:
             ("Cadastrar Turista - F1", self.controller.abrir_cadastro_turista, "#28A745", "F1"),
             ("Cadastrar Atrativo Turístico - F2", self.controller.abrir_cadastro_atrativo_turistico, "#F39C12", "F2"),
             ("Cadastrar Pacote - F3", self.controller.abrir_cadastro_pacote, "#3498DB", "F3"),
-            ("Nossos Pacotes - F4", lambda: print("Nossos Pacotes"), "#F1C40F", "F4"),
+            ("Nossos Pacotes - F4", self.controller.abrir_lista_pacotes, "#F1C40F", "F4"),
             ("Sair - F5", self.controller.sair, "#E74C3C", "F4")
         ]
         
@@ -75,3 +75,5 @@ class TelaAcoes:
 
         self.frame.grid_columnconfigure(0, weight=1)
         self.frame.grid_columnconfigure(1, weight=1)
+
+        
